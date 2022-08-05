@@ -1,49 +1,51 @@
 # MightyXSpam | @MightyXSpam
 
-"Fill These Vars Accordingly"
-"Visit @MightyXSupport If You Need Assistance"
+import os
+from os import getenv
+from dotenv import load_dotenv
+ 
+load_dotenv()
 
-API_ID = int(12345678) 
+API_ID = int(os.getenv("API_ID"))
 
-API_HASH = "abcdefghijklmnopqrstuvwxyz"
+API_HASH = os.getenv("API_HASH")
 
-ALIVE_NAME = "MightyX" # Optional 
+ALIVE_NAME = os.getenv("ALIVE_NAME")
 
-ALIVE_PIC = "https://telegra.ph/file/4c2ed8d25ba0eb913fd2f.jpg" # Optional 
+ALIVE_PIC = os.getenv("ALIVE_PIC")
 
-ALIVE_TEXT = "╚»★ 𝙏𝙃𝙀 𝙈𝙄𝙂𝙃𝙏𝙔 𝙓 𝙎𝙋𝘼𝙈 ★«╝" # Optional 
+ALIVE_TEXT = os.getenv("ALIVE_TEXT")
 
-OWNER_ID = int(12345678910)
+OWNER_ID = int(os.getenv("OWNER_ID"))
 
-SUDO_USERS = ("").split() # Ex : "12345678 12345678" # Optional
+SUDO_USERS = os.getenv("SUDO_USERS").split()
 
-CMD_HNDLR = "!" # Optional 
+CMD_HNDLR = os.getenv("CMD_HNDLR", "!")
 
-BOT_TOKEN = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-BOT_TOKEN2 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN2 = os.getenv("BOT_TOKEN2")
 
-BOT_TOKEN3 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN3 = os.getenv("BOT_TOKEN3")
 
-BOT_TOKEN4 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN4 = os.getenv("BOT_TOKEN4")
 
-BOT_TOKEN5 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN5 = os.getenv("BOT_TOKEN5")
 
-BOT_TOKEN6 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN6 = os.getenv("BOT_TOKEN6")
 
-BOT_TOKEN7 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN7 = os.getenv("BOT_TOKEN7")
 
-BOT_TOKEN8 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN8 = os.getenv("BOT_TOKEN8")
 
-BOT_TOKEN9 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN9 = os.getenv("BOT_TOKEN9")
 
-BOT_TOKEN10 = "5292487862:AAbCdEfgHIjklmnOpqrsTuVwxyZ"
+BOT_TOKEN10 = os.getenv("BOT_TOKEN10")
 
-DATABASE_URL = "postgres://abcdefg:abcDeFghiJklmnoPqrsTuvwxyz@castor.db.elephantsql.com/abcdefg"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 
-# 𝐃𝐨𝐧'𝐭 𝐓𝐨𝐮𝐜𝐡 𝐓𝐡𝐞 𝐕𝐚𝐫𝐬 𝐁𝐞𝐥𝐨𝐰 𝐓𝐡𝐢𝐬 𝐋𝐢𝐧𝐞 !! 
-
+# Don't Mess With Codes !! 
 ORIGINAL_CODE = "aHR0cHM6Ly9naXRodWIuY29tL0JlaW5nTWlnaHR5L01pZ2h0eUJvdFNwYW1TSA=="
 VARIFICATION = "TWlnaHR5WCBPUCBCYWFraSBTYWIgTHVuZCBLaSBUb3BpICEh"
 PASS = "VGFrIERpayBLYW5nZXIgISEgS2FuZyBXaXRoIENyZWRpdHMgTWFkYWZha2Eu"
