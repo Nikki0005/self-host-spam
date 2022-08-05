@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+import os, sys
 from config import *
 from base64 import b64decode
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon import Button
 
-mightyversion = "SelfHost 1.0"
+mightyversion = "SelfHost 2.0"
 hl = CMD_HNDLR
 que = {}
 
@@ -30,14 +30,11 @@ async def edit_or_reply(event, text):
             return await reply_to.reply(text)
         return await event.reply(text)
     return await event.edit(text)
-
-
 def get_readable_time(seconds: int) -> str:
     count = 0
     ping_time = ""
     time_list = []
     time_suffix_list = ["s", "m", "h", "days"]
-
     while count < 4:
         count += 1
         if count < 3:
@@ -48,18 +45,26 @@ def get_readable_time(seconds: int) -> str:
             break
         time_list.append(int(result))
         seconds = int(remainder)
-
     for x in range(len(time_list)):
         time_list[x] = str(time_list[x]) + time_suffix_list[x]
     if len(time_list) == 4:
         ping_time += time_list.pop() + ", "
-
     time_list.reverse()
     ping_time += ":".join(time_list)
-
     return ping_time
-
-
+def sed():
+    S = ORIGINAL_CODE == "aHR0cHM6Ly9naXRodWIuY29tL0JlaW5nTWlnaHR5L01pZ2h0eUJvdFNwYW1TSA=="
+    if bool(S) == False:
+        os.system("clear")
+        exit()
+    V = VARIFICATION == "TWlnaHR5WCBPUCBCYWFraSBTYWIgTHVuZCBLaSBUb3BpICEh"
+    if bool(V) == False:
+        os.system("clear")
+        exit()
+    P = PASS == "VGFrIERpayBLYW5nZXIgISEgS2FuZyBXaXRoIENyZWRpdHMgTWFkYWZha2Eu"
+    if bool(P) == False:
+        os.system("clear")
+        exit()
 async def gifspam(e, smex):
     try:
         await e.client(
@@ -74,8 +79,6 @@ async def gifspam(e, smex):
         )
     except Exception:
         pass
-
-
 async def get_user(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
@@ -91,16 +94,224 @@ async def get_user(event):
     return target
 
 
+vList = """\n\033[1;32m1.  API_ID
+2.  API_HASH
+3.  ALIVE_NAME
+4.  ALIVE_PIC
+5.  ALIVE_TEXT
+6.  OWNER_ID
+7.  SUDO_USERS
+8.  CMD_HNDLR
+9.  BOT_TOKEN
+10. BOT_TOKEN2
+11. BOT_TOKEN3
+12. BOT_TOKEN4
+13. BOT_TOKEN5
+14. BOT_TOKEN6
+15. BOT_TOKEN7
+16. BOT_TOKEN8
+17. BOT_TOKEN9
+18. BOT_TOKEN10
+19. DATABASE_URL\n"""
+
+
+def editV():
+    print(vList)
+    try:
+        EditV = input("""Ok !! Tell Me
+Which Config Var You Wanna Edit
+or Type: List || To See Your Config Vars
+1/2.../List: """)
+        if str(EditV.lower()) == "list":
+            print("\nHere's Your Config Vars List:\n")
+            os.system("dotenv list")
+            editV()
+        elif int(EditV) == 1:
+            api_id = input("Ok !! Enter API_ID: ")
+            if api_id:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set API_ID {api_id}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 2:
+            api_hash = input("\nOk !! Enter API_HASH: ")
+            if api_hash:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set API_HASH {api_hash}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 3:
+            alive_name = input("\nOk !! Enter ALIVE_NAME: ")
+            if alive_name:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set ALIVE_NAME {alive_name}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 4:
+            alive_pic = input("\nOk !! Enter ALIVE_PIC: ")
+            if alive_pic:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set ALIVE_PIC {alive_pic}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 5:
+            alive_text = input("\nOk !! Enter ALIVE_TEXT: ")
+            if alive_text:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set ALIVE_TEXT {alive_text}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 6:
+            owner_id = input("\nOk !! Enter OWNER_ID: ")
+            if owner_id:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set OWNER_ID {owner_id}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 7:
+            sudo_users = input("\nOk !! Enter SUDO_USERS: ")
+            if sudo_users:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set SUDO_USERS {sudo_users}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 8:
+            cmd_hndlr = input("\nOk !! Enter CMD_HNDLR: ")
+            if cmd_hndlr:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set CMD_HNDLR {cmd_hndlr}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 9:
+            bot_token = input("\nOk !! Enter BOT_TOKEN: ")
+            if bot_token:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN {bot_token}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 10:
+            bot_token2 = input("\nOk !! Enter BOT_TOKEN2: ")
+            if bot_token2:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN2 {bot_token2}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 11:
+            bot_token3 = input("\nOk !! Enter BOT_TOKEN3: ")
+            if bot_token3:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN3 {bot_token3}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 12:
+            bot_token4 = input("\nOk !! Enter BOT_TOKEN4: ")
+            if bot_token4:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN4 {bot_token4}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 13:
+            bot_token5 = input("\nOk !! Enter BOT_TOKEN5: ")
+            if bot_token5:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN5 {bot_token5}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 14:
+            bot_token6 = input("\nOk !! Enter BOT_TOKEN6: ")
+            if bot_token6:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN6 {bot_token6}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 15:
+            bot_token7 = input("\nOk !! Enter BOT_TOKEN7: ")
+            if bot_token7:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN7 {bot_token7}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 16:
+            bot_token8 = input("\nOk !! Enter BOT_TOKEN8: ")
+            if bot_token8:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN8 {bot_token8}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 17:
+            bot_token9 = input("\nOk !! Enter BOT_TOKEN9: ")
+            if bot_token9:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN9 {bot_token9}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 18:
+            bot_token10 = input("\nOk !! Enter BOT_TOKEN10: ")
+            if bot_token10:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set BOT_TOKEN {bot_token10}")
+                doneE()
+            else:
+                doneE()
+        elif int(EditV) == 19:
+            database_url = input("\nOk !! Enter DATABASE_URL: ")
+            if database_url:
+                print("\nNew Value ⤋")
+                os.system(f"dotenv set DATABASE_URL {database_url}")
+                doneE()
+            else:
+                doneE()
+        else:
+            print("""\n\033[1;31mInput Must Be A Var Number !!
+or Type: List || To See Your Config Vars""")
+            editV()
+    except ValueError:
+        print("""\n\033[1;31mInput Must Be A Var Number !!
+or Type: List || To See Your Config Vars""")
+        editV()
+
+
+def doneE():
+    done = input("\n\033[1;32mContinue Editing?: y/n ")
+    if done.lower() == "n":
+        print("\nDone, Booting Up... Please Wait !!\033[0m")
+        os.execl(sys.executable, sys.executable, *sys.argv)
+        os.system("cd; cd MightyBotSpamSH; python3 MightyXSpam.py")
+    elif done.lower() == "y":
+        editV()
+    else:
+        print("\n\n\033[1;31mInput Must Be Y or N\n\033[0m")
+        doneE()
+
+
 extra_msg = f"""
 **Help Extra Cmds**
 
 **UserBot :** Userbot Cmds
 Command :
-1) {hl}ping 
-2) {hl}alive
-3) {hl}restart
-4) {hl}stop || Owner Cmd ||
-5) {hl}addsudo <reply to user> || Owner Cmd || Temp Sudo ||
+1) {hl}ping || To Check Spambot's Response Time
+2) {hl}alive | To Check If Spambots Are Alive
+3) {hl}edit || Owner Cmd || To Edit Config Vars
+4) {hl}restart || To Restart Spambots
+5) {hl}stop || Owner Cmd || To Stop Spambots
+6) {hl}addsudo <reply to user> || Owner Cmd || Temp Sudo ||
 
 **Echo :** To Active Echo On Any User
 Command :
