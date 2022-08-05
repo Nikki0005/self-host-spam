@@ -13,35 +13,45 @@
 # limitations under the License.
 
 
-import os
+import os, colorama, time
 from config import *
 from utils import *
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
-if DATABASE_URL == "":
-    raise Exception("Please Fill Database URL In config.py")
+
+print("\033[1;32m\nPerforming Startup Check... Please Wait !!\n\033[0m")
+time.sleep(3)
+if API_ID == "":
+    raise Exception("\033[1;31mAPI_ID Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
+if API_HASH == "":
+    raise Exception("\033[1;31mAPI_HASH Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN == "":
-    raise Exception("Please Fill BOT_TOKEN In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN2 == "":
-    raise Exception("Please Fill BOT_TOKEN2 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN2 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN3 == "":
-    raise Exception("Please Fill BOT_TOKEN3 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN3 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN4 == "":
-    raise Exception("Please Fill BOT_TOKEN4 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN4 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN5 == "":
-    raise Exception("Please Fill BOT_TOKEN5 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN5 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN6 == "":
-    raise Exception("Please Fill BOT_TOKEN6 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN6 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN7 == "":
-    raise Exception("Please Fill BOT_TOKEN7 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN7 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN8 == "":
-    raise Exception("Please Fill BOT_TOKEN8 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN8 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN9 == "":
-    raise Exception("Please Fill BOT_TOKEN9 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN9 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
 if BOT_TOKEN10 == "":
-    raise Exception("Please Fill BOT_TOKEN10 In config.py")
+    raise Exception("\033[1;31mBOT_TOKEN10 Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
+if DATABASE_URL == "":
+    raise Exception("\033[1;31mDatabase URL Var Shouldn't Be Empty !!\nFill It With: python3 setup.py")
+print("\033[1;32mPass ✓\n")
+time.sleep(1.5)
+print("Booting Up... Please Wait !!\033[0m")
 try:
-    os.system("cd && cd MightyBotSpamSH && python3 MightyXSpam.py")
+    os.system("cd; cd MightyBotSpamSH; python3 MightyXSpam.py")
 except Exception as Mighty:
     print(str(Mighty))
