@@ -188,7 +188,7 @@ or Type: List || To See Your Config Vars
             else:
                 doneE()
         elif int(EditV) == 7:
-            sudo_users = input("\nOk !! Enter SUDO_USERS: ")
+            sudo_users = input("\nOk !! Enter SUDO_USERS: ").replace(" ", "\ ")
             if sudo_users:
                 print("\nNew Value ⤋")
                 os.system(f"dotenv set SUDO_USERS {sudo_users}")
