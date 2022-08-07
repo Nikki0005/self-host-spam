@@ -16,8 +16,57 @@
 import os, colorama, time
 from colorama import Fore, Style
 
-if os.path.exists(".env"):
-    os.system("rm -rf .env; touch .env")
+vars = """# || MightyX Config Vars || Run python3 setup.py To Fill ||
+API_ID=
+API_HASH=
+ALIVE_NAME=
+ALIVE_PIC=
+ALIVE_TEXT=
+OWNER_ID=
+SUDO_USERS=
+CMD_HNDLR=
+BOT_TOKEN=
+BOT_TOKEN2=
+BOT_TOKEN3=
+BOT_TOKEN4=
+BOT_TOKEN5=
+BOT_TOKEN6=
+BOT_TOKEN7=
+BOT_TOKEN8=
+BOT_TOKEN9=
+DATABASE_URL=
+"""
+os.system("clear")
+print(Fore.GREEN + Style.BRIGHT + """
+█▀▄▀█ █ █▀▀ █░█ ▀█▀ █▄█   ▀▄▀
+█░▀░█ █ █▄█ █▀█ ░█░ ░█░   █░█
+
+\nSuccessfully Loaded !!\n""")
+
+
+def configcheck():
+        if os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
+            time.sleep(2)
+            print("\nFound An Existing Backup Of Config Vars !!")
+            with open("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt", "r") as readV:
+                time.sleep(2)
+                print("\nProcessing...")
+                readV = readV.read()
+                with open(".env", "w") as writeV:
+                    time.sleep(2)
+                    print("\nRestoring Config Vars !!")
+                    writeV.write(readV)
+                    time.sleep(3)
+                    print("\nSuccessfully Restored !!")
+                    time.sleep(1.5)
+                    print("\nStarting...")
+                    os.system("cd; cd MightyBotSpamSH; python3 start.py")
+        elif not os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
+            with open(".env", "w") as writeV:
+                writeV.write(vars)
+                os.system("clear")
+                setup()
+
 
 def setup():
     print(Fore.GREEN + Style.BRIGHT + """
@@ -34,7 +83,7 @@ def setup():
     if api_hash:
         print("⤋")
         os.system(f"dotenv set API_HASH {api_hash}")
-    alive_name = input("\nEnter ALIVE_NAME: ")
+    alive_name = input("\nEnter ALIVE_NAME: ").replace(" ", "\ ")
     if alive_name:
         print("⤋")
         os.system(f"dotenv set ALIVE_NAME {alive_name}")
@@ -42,7 +91,7 @@ def setup():
     if alive_pic:
         print("⤋")
         os.system(f"dotenv set ALIVE_PIC {alive_pic}")
-    alive_text = input("\nEnter ALIVE_TEXT: ")
+    alive_text = input("\nEnter ALIVE_TEXT: ").replace(" ","\ ")
     if alive_text:
         print("⤋")
         os.system(f"dotenv set ALIVE_TEXT {alive_text}")
@@ -50,7 +99,7 @@ def setup():
     if owner_id:
         print("⤋")
         os.system(f"dotenv set OWNER_ID {owner_id}")
-    sudo_users = input("\nEnter SUDO_USERS: ")
+    sudo_users = input("\nEnter SUDO_USERS: ").replace(" ", "\ ")
     if sudo_users:
         print("⤋")
         os.system(f"dotenv set SUDO_USERS {sudo_users}")
@@ -130,11 +179,14 @@ def ready():
         os.system("clear; cd; cd MightyBotSpamSH; python3 start.py")
     elif Ready.lower() == "n":
         print("\nNevermind !! You Can Start It Later With :\n\ncd; cd MightyBotSpamSH; python3 start.py\n")
-        exit()
+        exit(2)
     else:
         os.system("clear")
         print(Fore.RED + Style.BRIGHT + "\nInput Must Be Y or N" + Style.RESET_ALL)
         ready()
 
-os.system("clear")
-setup()
+if os.path.exists(".env"):
+    os.system("rm -rf .env; touch .env")
+    configcheck()
+elif not os.path.exists(".env"):
+    configcheck()
