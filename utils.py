@@ -18,7 +18,7 @@ from base64 import b64decode
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon import Button
 
-mightyversion = "SelfHost 2.0"
+mightyversion = "SelfHost 2.1"
 hl = CMD_HNDLR
 que = {}
 
@@ -115,6 +115,19 @@ vList = """\n\033[1;32m1.  API_ID
 19. DATABASE_URL\n"""
 
 
+def configbac():
+    if os.path.exists(".env"):
+        with open(".env", "r") as readV:
+            readV = readV.read()
+            if os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
+                with open("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt", "w") as writeV:
+                    writeV.write(readV)
+            elif not os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
+                with open("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt", "w") as writeV:
+                    writeV.write(readV)
+
+
+
 def editV():
     print(vList)
     try:
@@ -143,7 +156,7 @@ or Type: List || To See Your Config Vars
             else:
                 doneE()
         elif int(EditV) == 3:
-            alive_name = input("\nOk !! Enter ALIVE_NAME: ")
+            alive_name = input("\nOk !! Enter ALIVE_NAME: ").replace(" ", "\ ")
             if alive_name:
                 print("\nNew Value ⤋")
                 os.system(f"dotenv set ALIVE_NAME {alive_name}")
@@ -159,7 +172,7 @@ or Type: List || To See Your Config Vars
             else:
                 doneE()
         elif int(EditV) == 5:
-            alive_text = input("\nOk !! Enter ALIVE_TEXT: ")
+            alive_text = input("\nOk !! Enter ALIVE_TEXT: ").replace(" ", "\ ")
             if alive_text:
                 print("\nNew Value ⤋")
                 os.system(f"dotenv set ALIVE_TEXT {alive_text}")
@@ -291,8 +304,9 @@ or Type: List || To See Your Config Vars""")
 def doneE():
     done = input("\n\033[1;32mContinue Editing?: y/n ")
     if done.lower() == "n":
-        print("\nDone, Booting Up... Please Wait !!\033[0m")
+        print("\nDone, Restarting... Please Wait !!\033[0m")
         os.execl(sys.executable, sys.executable, *sys.argv)
+        quit(2)
         os.system("cd; cd MightyBotSpamSH; python3 MightyXSpam.py")
     elif done.lower() == "y":
         editV()
@@ -336,7 +350,7 @@ raid_msg = f"""
 
 **Raid :** Activates Raid on Any individual User For Given Range.
 Command :
-1) {hl}raid <count> <username
+1) {hl}raid <count> <username>
 2) {hl}raid <count> <reply to user>
 
 **DelayRaid :** Activates Raid on Any individual User For Given Range.
