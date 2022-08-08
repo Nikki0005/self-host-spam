@@ -62,10 +62,11 @@ def configcheck():
                     print("\nStarting...")
                     os.system("cd; cd MightyBotSpamSH; python3 start.py")
         elif not os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
-            with open(".env", "w") as writeV:
-                writeV.write(vars)
-                os.system("clear")
-                setup()
+            writeV = open(".env", "w")
+            writeV.write(vars)
+            writeV.close()
+            os.system("clear")
+            setup()
 
 
 def setup():
