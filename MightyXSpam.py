@@ -251,24 +251,6 @@ async def editConfig(e):
         editV()
 
 
-@Mig.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig2.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig3.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig4.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig5.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig6.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig7.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig8.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig9.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-@Mig10.on(events.NewMessage(incoming=True, pattern=f"{hl}update"))
-async def update(e):
-    if e.sender_id == OWNER_ID:
-        text = "Updating Your MightyXSpam !!\nIt Hardly Takes 4-5 Minutes\nCheck Terminal ⚡"
-        await e.reply(text)
-        print("\033[1;32m\nUpdating Your MightyXSpam !!\nPlease Wait...\nIt Hardly Takes 4-5 Minutes\n\033[0m")
-        os.system(b64decode("dGVybXV4LXNldHVwLXN0b3JhZ2UgLXk7IGFwdCB1cGRhdGUgLXk7IGFwdCB1cGdyYWRlIC15OyBhcHQgaW5zdGFsbCBweXRob24gLXk7IGFwdCBpbnN0YWxsIGdpdDsgYXB0IGluc3RhbGwgcG9zdGdyZXNxbCAteTsgcGlwIGluc3RhbGwgLS11cGdyYWRlIHBpcDsgcGlwIGluc3RhbGwgdGVsZXRob247IGNkOyBybSAtcmYgTWlnaHR5Qm90U3BhbVNIOyBnaXQgY2xvbmUgaHR0cHM6Ly9naXRodWIuY29tL0JlaW5nTWlnaHR5L01pZ2h0eUJvdFNwYW1TSDsgY2QgTWlnaHR5Qm90U3BhbVNIOyBwaXAzIGluc3RhbGwgLXIgcmVxdWlyZW1lbnRzLnR4dDsgcHl0aG9uMyBzZXR1cC5weQ==").decode("UTF-8"))
-
-
 print("Loaded Plugin : Bot")
 
 # Spam
@@ -1063,7 +1045,6 @@ print("\n\nMightyX BotSpam Successfully Hosted !!\nEnjoy! Do Visit @MightyXSuppo
 
 
 
-configbac()
 Mig.run_until_disconnected()
 Mig2.run_until_disconnected()
 Mig3.run_until_disconnected()
