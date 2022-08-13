@@ -16,8 +16,9 @@
 import os, colorama, time
 from colorama import Fore, Style
 
-vars = """# || MightyX Config Vars || Run python3 setup.py To Fill ||
-API_ID=
+os.system("clear")
+
+vars = """API_ID=
 API_HASH=
 ALIVE_NAME=
 ALIVE_PIC=
@@ -34,40 +35,9 @@ BOT_TOKEN6=
 BOT_TOKEN7=
 BOT_TOKEN8=
 BOT_TOKEN9=
+BOT_TOKEN10=
 DATABASE_URL=
 """
-os.system("clear")
-print(Fore.GREEN + Style.BRIGHT + """
-█▀▄▀█ █ █▀▀ █░█ ▀█▀ █▄█   ▀▄▀
-█░▀░█ █ █▄█ █▀█ ░█░ ░█░   █░█
-
-\nSuccessfully Loaded !!\n""")
-
-
-def configcheck():
-        if os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
-            time.sleep(2)
-            print("\nFound An Existing Backup Of Config Vars !!")
-            with open("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt", "r") as readV:
-                time.sleep(2)
-                print("\nProcessing...")
-                readV = readV.read()
-                with open(".env", "w") as writeV:
-                    time.sleep(2)
-                    print("\nRestoring Config Vars !!")
-                    writeV.write(readV)
-                    time.sleep(3)
-                    print("\nSuccessfully Restored !!")
-                    time.sleep(1.5)
-                    print("\nStarting...")
-                    os.system("cd; cd MightyBotSpamSH; python3 start.py")
-        elif not os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
-            writeV = open(".env", "w")
-            writeV.write(vars)
-            writeV.close()
-            os.system("clear")
-            setup()
-
 
 def setup():
     print(Fore.GREEN + Style.BRIGHT + """
@@ -187,7 +157,23 @@ def ready():
         ready()
 
 if os.path.exists(".env"):
-    os.system("rm -rf .env; touch .env")
-    configcheck()
+    openF = open(".env", "r")
+    check = openF.read()
+    lines = check.splitlines()
+    openF.close()
+    if not len(lines) == 19:
+        os.system("rm -rf .env")
+        writeV = open(".env", "w")
+        writeV.write(vars)
+        writeV.close()
+        os.system("clear")
+        setup()
+    else:
+        os.system("clear")
+        setup()
 elif not os.path.exists(".env"):
-    configcheck()
+    writeV = open(".env", "w")
+    writeV.write(vars)
+    writeV.close()
+    os.system("clear")
+    setup()
