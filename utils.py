@@ -115,19 +115,6 @@ vList = """\n\033[1;32m1.  API_ID
 19. DATABASE_URL\n"""
 
 
-def configbac():
-    if os.path.exists(".env"):
-        with open(".env", "r") as readV:
-            readV = readV.read()
-            if os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
-                with open("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt", "w") as writeV:
-                    writeV.write(readV)
-            elif not os.path.exists("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt"):
-                with open("/data/data/com.termux/files/home/MightyBotSpamConfBac.txt", "w") as writeV:
-                    writeV.write(readV)
-
-
-
 def editV():
     print(vList)
     try:
