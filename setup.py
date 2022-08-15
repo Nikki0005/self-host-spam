@@ -117,7 +117,7 @@ def setup():
     bot_token10 = input("\nEnter BOT_TOKEN10: ")
     if bot_token10:
         print("⤋")
-        os.system(f"dotenv set BOT_TOKEN {bot_token10}")
+        os.system(f"dotenv set BOT_TOKEN10 {bot_token10}")
     database_url = input("\nEnter DATABASE_URL: ")
     if database_url:
         print("⤋")
